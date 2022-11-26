@@ -1,0 +1,13 @@
+{
+  "name": "kong-api-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "up": "docker compose up --force-recreate kong",
+    "down": "docker compose down kong"
+  },
+  "author": "Deepak Chandwani",
+  "license": "ISC"
+}

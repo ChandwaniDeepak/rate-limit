@@ -1,0 +1,47 @@
+_format_version: "3.0"
+_transform: true
+
+services:
+  - name: ts-service-app
+    url: http://10.0.0.205:5001
+    protocol: http
+    routes:
+      - name: get_items
+        paths:
+          - /api/menu/items
+        methods:
+          - "GET"
+        strip_path: false
+        hosts:
+          - "localhost"
+          - "10.0.0.205"
+      - name: get_item
+        paths:
+          - /api/menu/items/\d+
+        methods:
+          - "GET"
+        strip_path: false
+        hosts:
+          - "localhost"
+          - "10.0.0.205"
+
+  # - name: httpbin
+  #   url: http://localhost:80
+  #   protocol: http
+  #   routes:
+  #     - name: route_1
+  #       paths:
+  #         - /http-bin
+  #       strip_path: false
+  #     hosts:
+  #       - "localhost"
+
+plugins:
+  - name: rate-limiting
+    # consumer: jsmith
+    config:
+      second: 50
+      minute: 1600
+      policy: local
+
+  - name: prometheus

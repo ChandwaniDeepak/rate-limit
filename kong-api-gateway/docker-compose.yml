@@ -1,0 +1,24 @@
+version: '3.7'
+
+services:
+  kong:
+    build: .
+    user: '${KONG_USER:-kong}'
+    environment:
+      KONG_LOG_LEVEL: debug
+      REDIS_ADDRESS: 10.0.0.48
+      REDIS_PORT: 6379
+      KONG_DECLARATIVE_CONFIG: /usr/local/kong/kong.yml
+    volumes:
+      - ./kong.yml:/usr/local/kong/kong.yml
+    ports:
+      - '8000:8000/tcp'
+      - '8001:8001/tcp'
+      - '8443:8443/tcp'
+      - '8100:8100/tcp'
+    healthcheck:
+      test: ["CMD", "kong", "health"]
+      interval: 10s
+      timeout: 10s
+      retries: 10
+    restart: on-failure

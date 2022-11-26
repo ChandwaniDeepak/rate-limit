@@ -1,0 +1,11 @@
+{
+  "name": "k6",
+  "version": "1.0.0",
+  "description": "load testing apis",
+  "main": "single-request.js",
+  "scripts": {
+    "test": "k6 run single-request.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
